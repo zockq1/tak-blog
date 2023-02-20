@@ -11,6 +11,16 @@ const GlobalStyle = createGlobalStyle`
     *{
         box-sizing: border-box;
     }
+    input:focus {
+      outline: none;
+    }
+
+    button {
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+    }
   /* other styles */
 `;
 

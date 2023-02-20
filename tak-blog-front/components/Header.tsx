@@ -44,7 +44,7 @@ const SidebarHeader = styled.div`
   border-bottom: 1px solid #efefef;
 `;
 
-function BlogLayout(): React.ReactElement {
+function Header(): React.ReactElement {
   const [isActive, setisActive] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
@@ -92,9 +92,11 @@ function BlogLayout(): React.ReactElement {
       </Sidebar>
       <MenuUnfoldOutlined onClick={isActiveSidebar} />
       <Logo href="/">Tak-Blog</Logo>
-      <LoginOutlined />
+      <Link href="/login">
+        <LoginOutlined />
+      </Link>
     </HeaderWrapper>
   );
 }
 
-export default BlogLayout;
+export default Header;
