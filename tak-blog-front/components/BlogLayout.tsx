@@ -8,7 +8,6 @@ const Container = styled.div`
 `;
 
 const Inner = styled.div`
-  max-width: 1240px;
   padding-left: 16px;
   padding-right: 16px;
   width: 100%;

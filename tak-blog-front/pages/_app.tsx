@@ -14,7 +14,12 @@ const GlobalStyle = createGlobalStyle`
     input:focus {
       outline: none;
     }
-
+    input, textarea { 
+      -moz-user-select: auto;
+      -webkit-user-select: auto;
+      -ms-user-select: auto;
+      user-select: auto;
+    }
     button {
       border: none;
       background: none;

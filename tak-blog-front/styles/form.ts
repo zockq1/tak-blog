@@ -33,12 +33,18 @@ export const Input = styled.input`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<{
+  bgcolor?: string;
+  isBorder?: boolean;
+  borderColor?: string;
+}>`
   padding: 12px;
-  background-color: #000;
+  background-color: ${(props) => props.bgcolor || "black"};
   border-radius: 16px;
   font-size: 16px;
-  color: #fff;
+  color: ${(props) => props.color || "white"};
   margin-top: 30px;
   width: 100%;
+  border: ${(props) =>
+    props.isBorder && `2px ${props.borderColor || "black"} solid`};
 `;
