@@ -48,3 +48,10 @@ export const Button = styled.button<{
   border: ${(props) =>
     props.isBorder && `2px ${props.borderColor || "black"} solid`};
 `;
+
+export const Title = styled.div`
+  font-size: 30px;
+  font-weight: 900;
+  margin-bottom: 15px;
+  text-align: center;
+`;

@@ -1,30 +1,20 @@
 import { useForm } from "react-hook-form";
-import { Form, Button, Input } from "@/styles/form";
-import styled from "styled-components";
+import { Form, Button, Input, Title } from "@/styles/form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Link from "next/link";
 
 type LoginFormInputs = {
   email: string;
   password: string;
 };
 
-const FormTitle = styled.div`
-  font-size: 30px;
-  font-weight: 900;
-  margin-bottom: 15px;
-  text-align: center;
-`;
-
 const schema = yup.object().shape({
   email: yup
     .string()
     .email("이메일 양식에 맞춰주십시오")
     .required("이메일을 입력해 주십시오"),
-  password: yup
-    .string()
-    .required("비빌번호를 입력해 주십시오")
-    .min(8, "비밀번호가 너무 짧습니다"),
+  password: yup.string().required("비빌번호를 입력해 주십시오"),
 });
 
 const Login = () => {
@@ -43,7 +33,7 @@ const Login = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormTitle>Login</FormTitle>
+      <Title>Login</Title>
       <Input
         id="email"
         placeholder="이메일"
@@ -66,9 +56,11 @@ const Login = () => {
         </span>
       )}
       <Button type="submit">로그인</Button>
-      <Button color="black" bgcolor="white" isBorder={true}>
-        회원가입
-      </Button>
+      <Link href="/signup">
+        <Button color="black" bgcolor="white" isBorder={true}>
+          회원가입
+        </Button>
+      </Link>
     </Form>
   );
 };
