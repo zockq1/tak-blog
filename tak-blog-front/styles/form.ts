@@ -16,30 +16,33 @@ export const Form = styled.form`
   height: 100%;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{
+  backgroundColor?: string;
+  borderColor?: string;
+}>`
   padding: 12px;
-  background-color: #f6f6f6;
-  border: 2px solid #f6f6f6;
+  background-color: ${(props) => props.backgroundColor || "#f6f6f6"};
+  border: 1px solid ${(props) => props.borderColor || "#f6f6f6"};
   border-radius: 16px;
   font-size: 16px;
   color: black;
-  margin-top: 10px;
+  margin: 5px 0;
   width: 100%;
-  &:focus {
-    border-color: #001d66;
-  }
+  /* &:focus {
+    border-color: ${(props) => props.borderColor || "#001d66"};
+  } */
   &::placeholder {
     color: grey;
   }
 `;
 
 export const Button = styled.button<{
-  bgcolor?: string;
+  backgroundColor?: string;
   isBorder?: boolean;
   borderColor?: string;
 }>`
   padding: 12px;
-  background-color: ${(props) => props.bgcolor || "black"};
+  background-color: ${(props) => props.backgroundColor || "black"};
   border-radius: 16px;
   font-size: 16px;
   color: ${(props) => props.color || "white"};

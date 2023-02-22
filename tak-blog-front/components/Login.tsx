@@ -57,7 +57,7 @@ const Login = () => {
       )}
       <Button type="submit">로그인</Button>
       <Link href="/signup">
-        <Button color="black" bgcolor="white" isBorder={true}>
+        <Button color="black" backgroundColor="white" isBorder={true}>
           회원가입
         </Button>
       </Link>
