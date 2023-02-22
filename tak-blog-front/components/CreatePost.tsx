@@ -6,6 +6,7 @@ import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 
 import { Button, Input } from "@/styles/form";
+import InputError from "./InputError";
 
 type FormData = {
   title: string;
@@ -44,11 +45,7 @@ function CreatePost(): React.ReactElement {
         borderColor="#dadde6"
         {...register("title", { required: true })}
       />
-      {errors.title && (
-        <div style={{ color: "red", marginBottom: 4, fontSize: 14 }}>
-          {errors.title.message}
-        </div>
-      )}
+      <InputError error={errors.title?.message} />
       <Editor
         initialValue=" "
         previewStyle="tab"
@@ -57,18 +54,8 @@ function CreatePost(): React.ReactElement {
         useCommandShortcut={true}
         onChange={(e) => setValue("content", e)}
       />
-      {errors.content && (
-        <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-          {errors.content.message}
-        </span>
-      )}
-
-      <Button
-        type="submit"
-        color="#1f1f1f"
-        backgroundColor="#dadde6"
-        //isBorder={true}
-      >
+      <InputError error={errors.content?.message} />
+      <Button type="submit" color="#1f1f1f" backgroundColor="#dadde6">
         작성 완료
       </Button>
     </form>

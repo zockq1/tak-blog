@@ -3,6 +3,7 @@ import { Form, Button, Input, Title } from "@/styles/form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
+import InputError from "./InputError";
 
 type LoginFormInputs = {
   email: string;
@@ -39,22 +40,14 @@ const Login = () => {
         placeholder="이메일"
         {...register("email", { required: true })}
       />
-      {errors.email && (
-        <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-          {errors.email.message}
-        </span>
-      )}
+      <InputError error={errors.email?.message} />
       <Input
         id="password"
         type="password"
         placeholder="비밀번호"
         {...register("password", { required: true })}
       />
-      {errors.password && (
-        <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-          {errors.password.message}
-        </span>
-      )}
+      <InputError error={errors.password?.message} />
       <Button type="submit">로그인</Button>
       <Link href="/signup">
         <Button color="black" backgroundColor="white" isBorder={true}>

@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Form, Button, Input, Title } from "@/styles/form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import InputError from "./InputError";
 
 type SignupFormInputs = {
   email: string;
@@ -46,43 +47,27 @@ const Signup = () => {
         placeholder="이메일"
         {...register("email", { required: true })}
       />
-      {errors.email && (
-        <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-          {errors.email.message}
-        </span>
-      )}
+      <InputError error={errors.email?.message} />
       <Input
         id="nickname"
         placeholder="닉네임"
         {...register("nickname", { required: true })}
       />
-      {errors.nickname && (
-        <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-          {errors.nickname.message}
-        </span>
-      )}
+      <InputError error={errors.nickname?.message} />
       <Input
         id="password"
         type="password"
         placeholder="비밀번호"
         {...register("password", { required: true })}
       />
-      {errors.password && (
-        <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-          {errors.password.message}
-        </span>
-      )}
+      <InputError error={errors.password?.message} />
       <Input
         id="password-confirm"
         type="password"
         placeholder="비밀번호 확인"
         {...register("passwordConfirm", { required: true })}
       />
-      {errors.passwordConfirm && (
-        <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-          {errors.passwordConfirm.message}
-        </span>
-      )}
+      <InputError error={errors.passwordConfirm?.message} />
       <Button type="submit">가입하기</Button>
     </Form>
   );

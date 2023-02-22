@@ -12,6 +12,7 @@ export const Form = styled.form`
   border: 1px solid #eee;
   border-radius: 16px;
   padding: 50px;
+  width: 100%;
   max-width: 400px;
   height: 100%;
 `;
@@ -46,7 +47,7 @@ export const Button = styled.button<{
   border-radius: 16px;
   font-size: 16px;
   color: ${(props) => props.color || "white"};
-  margin-top: 30px;
+  margin-top: 20px;
   width: 100%;
   border: ${(props) =>
     props.isBorder && `2px ${props.borderColor || "black"} solid`};
