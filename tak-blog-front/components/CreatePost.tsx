@@ -36,8 +36,8 @@ function CreatePost(): React.ReactElement {
   const onChange = () => {
     const data = editorRef.current?.getInstance().getHTML();
     setValue("content", data);
-    console.log(data);
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} style={{ width: "100%" }}>
       <Input
