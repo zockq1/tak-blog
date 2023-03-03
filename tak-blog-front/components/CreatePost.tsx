@@ -7,11 +7,7 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 
 import { Button, Input } from "@/styles/form";
 import InputError from "./InputError";
-
-type PostForm = {
-  title: string;
-  content: string | undefined;
-};
+import { CreatePostForm } from "@/types/post";
 
 const schema = yup.object().shape({
   title: yup.string().required("제목을 입력해 주십시오"),
@@ -24,11 +20,11 @@ function CreatePost(): React.ReactElement {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<PostForm>({
+  } = useForm<CreatePostForm>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: PostForm) => {
+  const onSubmit = (data: CreatePostForm) => {
     console.log(data);
     // 포스트 저장 로직 구현
   };

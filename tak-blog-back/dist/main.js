@@ -11,6 +11,10 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const serverConfig = config_1.default.get("server");
     const port = serverConfig.port;
+    app.enableCors({
+        origin: true,
+        credentials: true,
+    });
     await app.listen(port);
     common_1.Logger.log(`Application running on port ${port}`);
 }

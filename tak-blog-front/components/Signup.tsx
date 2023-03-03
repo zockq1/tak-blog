@@ -3,13 +3,7 @@ import { Form, Button, Input, Title } from "@/styles/form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputError from "./InputError";
-
-type SignupFormInputs = {
-  email: string;
-  nickname: string;
-  password: string;
-  passwordConfirm: string;
-};
+import { SignupFormInputs } from "@/types/auth";
 
 const schema = yup.object().shape({
   email: yup

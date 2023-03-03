@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import wrapper from "../store/configureStore";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -30,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
   /* other styles */
 `;
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyle />
@@ -38,3 +39,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+export default wrapper.withRedux(App);

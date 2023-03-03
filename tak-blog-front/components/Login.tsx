@@ -4,11 +4,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import InputError from "./InputError";
-
-type LoginFormInputs = {
-  email: string;
-  password: string;
-};
+import { LoginFormInput } from "@/types/auth";
+import { useDispatch } from "react-redux";
+import { LOG_IN_REQUEST } from "@/reducers/auth";
 
 const schema = yup.object().shape({
   email: yup
@@ -19,16 +17,21 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormInputs>({
+  } = useForm<LoginFormInput>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: LoginFormInputs) => {
+  const onSubmit = (data: LoginFormInput) => {
     // 로그인 처리를 수행하는 코드를 작성합니다.
+    dispatch({
+      type: LOG_IN_REQUEST,
+      data,
+    });
     console.log(data);
   };
 
