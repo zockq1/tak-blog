@@ -30,7 +30,7 @@ const Login = () => {
     // 로그인 처리를 수행하는 코드를 작성합니다.
     dispatch({
       type: LOG_IN_REQUEST,
-      data,
+      payload: data,
     });
     console.log(data);
   };

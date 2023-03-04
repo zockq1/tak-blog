@@ -4,8 +4,10 @@ import {
   CloseOutlined,
   LoginOutlined,
   MenuUnfoldOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 
 const HeaderWrapper = styled.header`
   height: 60px;
@@ -47,6 +49,7 @@ const SidebarHeader = styled.div`
 function Header(): React.ReactElement {
   const [isActive, setisActive] = useState(false);
   const sidebarRef = useRef<HTMLDivElement>(null);
+  const { isLoggedIn } = useSelector((state: any) => state.auth);
 
   const isActiveSidebar = () => {
     console.log("click!", isActive);
@@ -92,9 +95,13 @@ function Header(): React.ReactElement {
       </Sidebar>
       <MenuUnfoldOutlined onClick={isActiveSidebar} />
       <Logo href="/">Tak-Blog</Logo>
-      <Link href="/login">
-        <LoginOutlined />
-      </Link>
+      {isLoggedIn ? (
+        <UserOutlined />
+      ) : (
+        <Link href="/login">
+          <LoginOutlined />
+        </Link>
+      )}
     </HeaderWrapper>
   );
 }

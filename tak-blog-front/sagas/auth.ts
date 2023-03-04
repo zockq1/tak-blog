@@ -25,11 +25,10 @@ function logInAPI(data: LoginFormInput) {
 
 function* logIn(action: LoginAction) {
   try {
-    const token: string = yield call(logInAPI, action.data);
-    console.log(token); ////
+    const token: string = yield call(logInAPI, action.payload);
     yield put({
       type: LOG_IN_SUCCESS,
-      data: token,
+      payload: token,
     });
   } catch (err: any) {
     console.error(err);
@@ -65,7 +64,7 @@ function signUpAPI(data: SignupFormInputs) {
 
 function* signUp(action: SignupAction) {
   try {
-    const result: string = yield call(signUpAPI, action.data);
+    const result: string = yield call(signUpAPI, action.payload);
     console.log(result); ////
     yield put({
       type: SIGN_UP_SUCCESS,

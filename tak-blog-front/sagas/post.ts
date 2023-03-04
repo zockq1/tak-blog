@@ -26,7 +26,7 @@ function createPostAPI(data: CreatePostForm) {
 
 function* createPost(action: CreatePostAction) {
   try {
-    const result: string = yield call(createPostAPI, action.data);
+    const result: string = yield call(createPostAPI, action.payload);
     console.log(result);
     yield put({
       type: CREATE_POST_SUCCESS,
@@ -46,7 +46,7 @@ function updatePostAPI(data: UpdatePostForm) {
 
 function* updatePost(action: UpdatePostAction) {
   try {
-    const result: string = yield call(updatePostAPI, action.data);
+    const result: string = yield call(updatePostAPI, action.payload);
     console.log(result);
     yield put({
       type: UPDATE_POST_SUCCESS,
@@ -66,7 +66,7 @@ function deletePostAPI(data: number) {
 
 function* deletePost(action: DeletePostAction) {
   try {
-    const result: string = yield call(deletePostAPI, action.data);
+    const result: string = yield call(deletePostAPI, action.payload);
     console.log(result);
     yield put({
       type: DELETE_POST_SUCCESS,

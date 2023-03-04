@@ -12,10 +12,10 @@ export interface SignupFormInputs {
 
 export interface LoginAction {
   type: "LOG_IN_REQUEST";
-  data: LoginFormInput;
+  payload: LoginFormInput;
 }
 
 export interface SignupAction {
   type: "SIGN_IN_REQUEST";
-  data: SignupFormInputs;
+  payload: SignupFormInputs;
 }

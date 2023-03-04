@@ -5,7 +5,7 @@ export interface CreatePostForm {
 
 export interface CreatePostAction {
   type: "CREATE_POST_REQUEST";
-  data: CreatePostForm;
+  payload: CreatePostForm;
 }
 
 export interface UpdatePostForm {
@@ -16,10 +16,10 @@ export interface UpdatePostForm {
 
 export interface UpdatePostAction {
   type: "UPDATE_POST_REQUEST";
-  data: UpdatePostForm;
+  payload: UpdatePostForm;
 }
 
 export interface DeletePostAction {
   type: "DELETE_POST_REQUEST";
-  data: number;
+  payload: number;
 }
