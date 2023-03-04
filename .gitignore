@@ -134,7 +134,8 @@ typings/
 
 # Serverless directories
 .serverless
-/front/build/
+/tak-blog-front/build/
+/tak-blog-back/dist/
 tak-blog-server.pem
 node_modules
 .env
