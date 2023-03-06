@@ -8,6 +8,7 @@ import { UserRepository } from "./user.repository";
 import * as bcrypt from "bcryptjs";
 import { LoginCredentialsDto } from "./dto/login-credential.dto";
 import { JwtService } from "@nestjs/jwt";
+import { User } from "./user.entity";
 
 @Injectable()
 export class AuthService {
@@ -42,5 +43,12 @@ export class AuthService {
     if (result.affected === 0) {
       throw new NotFoundException(`id가 ${id}인 유저를 찾지 못했습니다.`);
     }
+  }
+
+  check(user: User): string {
+    if (user.email === "zockq1@naver.com") {
+      return "admin";
+    }
+    return "user";
   }
 }

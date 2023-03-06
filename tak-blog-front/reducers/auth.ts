@@ -10,7 +10,11 @@ export const initialState = {
   signUpLoading: false, // 회원가입 시도중
   signUpDone: false,
   signUpError: null,
+  authCheckLoading: false,
+  authCheckDone: false,
+  authCheckError: null,
   isLoggedIn: false,
+  role: "user",
 };
 
 export const LOG_IN_REQUEST = "LOG_IN_REQUEST";
@@ -25,6 +29,10 @@ export const SIGN_UP_REQUEST = "SIGN_UP_REQUEST";
 export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
 
+export const AUTH_CHECK_REQUEST = "SIGN_UP_REQUEST";
+export const AUTH_CHECK_SUCCESS = "SIGN_UP_SUCCESS";
+export const AUTH_CHECK_FAILURE = "SIGN_UP_FAILURE";
+
 const reducer = (state = initialState, action: any) =>
   produce(state, (draft) => {
     switch (action.type) {
@@ -37,8 +45,7 @@ const reducer = (state = initialState, action: any) =>
         draft.logInLoading = false;
         draft.isLoggedIn = true;
         draft.logInDone = true;
-        console.log(action.payload.data.accessToken); ////
-        localStorage.setItem("accessToken", action.payload.data.accessToken);
+        draft.role = action.payload;
         break;
       case LOG_IN_FAILURE:
         draft.logInLoading = false;
@@ -53,6 +60,7 @@ const reducer = (state = initialState, action: any) =>
         draft.logOutLoading = false;
         draft.logOutDone = true;
         draft.isLoggedIn = false;
+        draft.role = "user";
         break;
       case LOG_OUT_FAILURE:
         draft.logOutLoading = false;
@@ -70,6 +78,21 @@ const reducer = (state = initialState, action: any) =>
       case SIGN_UP_FAILURE:
         draft.signUpLoading = false;
         draft.signUpError = action.error;
+        break;
+      case AUTH_CHECK_REQUEST:
+        draft.authCheckLoading = true;
+        draft.authCheckError = null;
+        draft.authCheckDone = false;
+        break;
+      case AUTH_CHECK_SUCCESS:
+        draft.authCheckLoading = false;
+        draft.authCheckDone = true;
+        draft.isLoggedIn = true;
+        draft.role = action.payload;
+        break;
+      case AUTH_CHECK_FAILURE:
+        draft.authCheckLoading = false;
+        draft.authCheckError = action.error;
         break;
       default:
         break;

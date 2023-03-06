@@ -21,12 +21,14 @@ import {
 } from "../reducers/post";
 
 function createPostAPI(data: CreatePostForm) {
-  const accessToken = localStorage.getItem("accessToken");
-  return axios.post("/post", data, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+  // const accessToken = Cookies.get();
+  // return axios.post("/post", data, {
+  //   headers: {
+  //     Authorization: `Bearer ${accessToken}`,
+  //   },
+  // });
+
+  return axios.post("/post", data);
 }
 
 function* createPost(action: CreatePostAction) {

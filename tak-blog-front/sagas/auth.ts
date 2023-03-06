@@ -11,6 +11,9 @@ import {
   SIGN_UP_FAILURE,
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
+  AUTH_CHECK_FAILURE,
+  AUTH_CHECK_REQUEST,
+  AUTH_CHECK_SUCCESS,
 } from "../reducers/auth";
 import {
   LoginAction,
@@ -25,10 +28,11 @@ function logInAPI(data: LoginFormInput) {
 
 function* logIn(action: LoginAction) {
   try {
-    const token: string = yield call(logInAPI, action.payload);
+    const role: string = yield call(logInAPI, action.payload);
+    console.log("로그인 성공; ", role);
     yield put({
       type: LOG_IN_SUCCESS,
-      payload: token,
+      payload: role,
     });
   } catch (err: any) {
     console.error(err);
@@ -65,7 +69,6 @@ function signUpAPI(data: SignupFormInputs) {
 function* signUp(action: SignupAction) {
   try {
     const result: string = yield call(signUpAPI, action.payload);
-    console.log(result); ////
     yield put({
       type: SIGN_UP_SUCCESS,
     });
@@ -73,6 +76,27 @@ function* signUp(action: SignupAction) {
     console.error(err);
     yield put({
       type: SIGN_UP_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+function authCheckAPI() {
+  const accessToken = localStorage.getItem("accessToken");
+  return axios.post("/auth/signup");
+}
+
+function* authCheck(action: SignupAction) {
+  try {
+    const role: string = yield call(authCheckAPI);
+    yield put({
+      type: AUTH_CHECK_SUCCESS,
+      payload: role,
+    });
+  } catch (err: any) {
+    console.error(err);
+    yield put({
+      type: AUTH_CHECK_FAILURE,
       error: err.response.data,
     });
   }
@@ -90,6 +114,15 @@ function* watchSignUp() {
   yield takeLatest(SIGN_UP_REQUEST, signUp);
 }
 
+function* watchAuthCheck() {
+  yield takeLatest(AUTH_CHECK_REQUEST, authCheck);
+}
+
 export default function* userSaga() {
-  yield all([fork(watchLogIn), fork(watchLogOut), fork(watchSignUp)]);
+  yield all([
+    fork(watchLogIn),
+    fork(watchLogOut),
+    fork(watchSignUp),
+    fork(watchAuthCheck),
+  ]);
 }
