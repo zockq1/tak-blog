@@ -42,7 +42,7 @@ export class AuthController {
   }
 
   @Post("/test")
-  @UseGuards(AuthGuard("jwt"), OnlyAdminGuard)
+  @UseGuards(AuthGuard("jwt"))
   test(@GetUser() user: User) {
     console.log("user", user);
   }

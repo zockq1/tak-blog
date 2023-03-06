@@ -21,13 +21,17 @@ import {
 } from "../reducers/post";
 
 function createPostAPI(data: CreatePostForm) {
-  return axios.post("/post", data);
+  const accessToken = localStorage.getItem("accessToken");
+  return axios.post("/post", data, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
 }
 
 function* createPost(action: CreatePostAction) {
   try {
     const result: string = yield call(createPostAPI, action.payload);
-    console.log(result);
     yield put({
       type: CREATE_POST_SUCCESS,
     });

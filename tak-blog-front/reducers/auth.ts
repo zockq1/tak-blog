@@ -38,7 +38,7 @@ const reducer = (state = initialState, action: any) =>
         draft.isLoggedIn = true;
         draft.logInDone = true;
         console.log(action.payload.data.accessToken); ////
-        localStorage.setItem("jwt-token", action.payload.data.accessToken);
+        localStorage.setItem("accessToken", action.payload.data.accessToken);
         break;
       case LOG_IN_FAILURE:
         draft.logInLoading = false;
