@@ -6,7 +6,6 @@ import {
   Param,
   ParseIntPipe,
   Post,
-  Req,
   Res,
   UseGuards,
   UsePipes,
@@ -19,7 +18,7 @@ import { SignupCredentialsDto } from "./dto/signup-credential.dto";
 import { GetUser } from "./get-user.decorator";
 import { OnlyAdminGuard } from "./only-admin.guard";
 import { User } from "./user.entity";
-import { Response, Request } from "express";
+import { Response } from "express";
 
 @Controller("auth")
 export class AuthController {
@@ -38,7 +37,6 @@ export class AuthController {
     @Res() res: Response
   ): Promise<any> {
     const jwt = await this.authService.login(loginCredentialsDto);
-    res.setHeader("Authorization", "Bearer " + jwt.accessToken);
     res.cookie("accessToken", jwt.accessToken, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000, //1 day

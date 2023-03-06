@@ -45,7 +45,7 @@ const reducer = (state = initialState, action: any) =>
         draft.logInLoading = false;
         draft.isLoggedIn = true;
         draft.logInDone = true;
-        draft.role = action.payload;
+        draft.role = action.payload.data.role;
         break;
       case LOG_IN_FAILURE:
         draft.logInLoading = false;
@@ -88,7 +88,7 @@ const reducer = (state = initialState, action: any) =>
         draft.authCheckLoading = false;
         draft.authCheckDone = true;
         draft.isLoggedIn = true;
-        draft.role = action.payload;
+        draft.role = action.payload.data.role;
         break;
       case AUTH_CHECK_FAILURE:
         draft.authCheckLoading = false;
